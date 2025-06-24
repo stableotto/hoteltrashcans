@@ -2,6 +2,8 @@ backend:
   name: github
   repo: stableotto/hoteltrashcans
   branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 # Uncomment below to enable drafts
 # publish_mode: editorial_workflow
