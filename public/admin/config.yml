@@ -1,5 +1,9 @@
 backend:
-  name: test-repo
+  name: github
+  repo: stableotto/hoteltrashcans
+  branch: main
+  base_url: https://cms-oauth-provider.herokuapp.com
+  auth_endpoint: auth
 
 # For production, use:
 # backend:
