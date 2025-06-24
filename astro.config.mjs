@@ -1,12 +1,14 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://your-domain.pages.dev', // Replace with your actual domain
+  site: 'https://hoteltrashcans.pages.dev', // Update this with your actual Cloudflare Pages URL
   output: 'static',
   adapter: undefined, // Static site generation
   integrations: [
+    tailwind(),
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
