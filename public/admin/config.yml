@@ -4,17 +4,7 @@ backend:
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: auth
-  site_domain: transcendent-torrone-606c55.netlify.app
-  # For personal access token authentication:
-  # Go to GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
-  # Create a token with 'repo' scope
-  # The CMS will prompt you to enter this token when you first login
-
-# For production, use:
-# backend:
-#   name: github
-#   repo: stableotto/hoteltrashcans
-#   branch: main
+  site_id: 0f5153ae-a137-425a-8391-f8c3e9eea3ea
 
 # Uncomment below to enable drafts
 # publish_mode: editorial_workflow
