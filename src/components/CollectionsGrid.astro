@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+
+// Get all collections
+const allCollections = await getCollection('collections');
+
+// Define the desired order
+const collectionOrder = [
+  'portola-collection',
+  'canon-collection', 
+  'hillcrest-collection',
+  'metro-collection',
+  'facet-collection',
+  'rodeo-collection',
+  'piru-collection',
+  'montecito-collection',
+  'fillmore-collection'
+];
+
+// Sort collections according to the specified order
+const collections = collectionOrder
+  .map(slug => allCollections.find(collection => collection.slug === slug))
+  .filter(Boolean); // Remove any undefined entries
+---
+
+<section class="section-padding" id="collections">
+  <div class="container">
+    <div class="text-center">
+      <h2>Our Collections</h2>
+      <p>Explore our premium range of commercial waste solutions designed for every space.</p>
+    </div>
+    
+    <div class="collections-grid">
+      {collections.map((collection) => (
+        <a href={`/collections/${collection.slug}`} class="collection-item">
+          <img
+            src={collection.data.coverImage}
+            alt={`${collection.data.title} collection cover`}
+            class="collection-image"
+            loading="lazy"
+          />
+          <div class="collection-content">
+            <h3 class="collection-title">{collection.data.title}</h3>
+            <p>{collection.data.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section> 

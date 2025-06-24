@@ -1,0 +1,75 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# Uncomment below to enable drafts
+# publish_mode: editorial_workflow
+
+media_folder: static/img
+public_folder: /img
+
+# Custom editor components for better UX
+editor:
+  preview: false
+
+collections:
+  - name: "collections"
+    label: "Trash Can Collections"
+    folder: "src/content/collections"
+    create: true
+    slug: "{{slug}}-collection"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "markdown"}
+      - label: "Specifications"
+        name: "specifications"
+        widget: "object"
+        fields:
+          - {label: "Dimensions", name: "dimensions", widget: "string"}
+          - {label: "Capacity", name: "capacity", widget: "string"}
+          - {label: "Designer", name: "designer", widget: "string", required: false}
+      - {label: "Cover Image URL", name: "coverImage", widget: "string", hint: "Full URL to cover image"}
+      - {label: "Hero Image URL", name: "heroImage", widget: "string", hint: "Full URL to hero image"}
+      - {label: "Main Product Image URL", name: "mainProductImage", widget: "string", hint: "Full URL to main product image"}
+      - label: "Color Variations"
+        name: "colorVariations"
+        widget: "list"
+        fields:
+          - label: "Name"
+            name: "name"
+            widget: "select"
+            options: 
+              - "Carbon"
+              - "Parchment"
+              - "Moss"
+              - "Salmon"
+              - "Merlot"
+              - "Sage"
+              - "White Burl"
+              - "Topaz"
+              - "Pearl White"
+              - "Mink"
+              - "Patina"
+              - "Lava"
+              - "Pewter"
+              - "Mahogany"
+              - "Carbon/Pewter"
+              - "Lava/Mink"
+              - "Patina/Sahara"
+              - "Mink/Lava"
+              - "Pearl White/Topaz"
+              - "Topaz/Pewter"
+            default: "Carbon"
+          - {label: "Image URL", name: "image", widget: "string", hint: "Full URL to the image (e.g., https://pub-2fa7464bdf334fa9832ed14fe5565b2e.r2.dev/...)"}
+          - {label: "Alt Text", name: "alt", widget: "string", hint: "Descriptive text for accessibility"}
+      - {label: "Buy Now Link", name: "buyNowLink", widget: "string"}
+      - {label: "Download PDF Link", name: "downloadPdfLink", widget: "string"}
+      - {label: "Metal Options Link", name: "metalOptionsLink", widget: "string", required: false}
+      - label: "SEO"
+        name: "seo"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "SEO Title", name: "title", widget: "string"}
+          - {label: "SEO Description", name: "description", widget: "text"}
+          - {label: "Keywords", name: "keywords", widget: "string", required: false} 

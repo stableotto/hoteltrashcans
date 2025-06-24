@@ -1,0 +1,30 @@
+---
+export interface Props {
+  backgroundImage?: string;
+  title: string;
+  subtitle: string;
+}
+
+const { 
+  backgroundImage = "https://pub-2fa7464bdf334fa9832ed14fe5565b2e.r2.dev/hero1.jpg",
+  title,
+  subtitle 
+} = Astro.props;
+---
+
+<section class="hero">
+  <img 
+    src={backgroundImage} 
+    alt="Premium hotel trash cans and waste management solutions"
+    class="hero-bg"
+    loading="eager"
+  />
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <h1>{title}</h1>
+      <p>{subtitle}</p>
+      <a href="/request-quote" class="btn btn-primary hero-cta">Get Your Quote Today</a>
+    </div>
+  </div>
+</section> 

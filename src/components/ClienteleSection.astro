@@ -1,0 +1,45 @@
+---
+// Clientele section displaying hotel logos from R2 hotellogos folder
+const clientLogos = [
+  {
+    name: "Hotel Logo 1",
+    image: "https://pub-2fa7464bdf334fa9832ed14fe5565b2e.r2.dev/hotellogos/hotel1.png",
+    alt: "Premium hotel partner logo"
+  },
+  {
+    name: "Hotel Logo 2",
+    image: "https://pub-2fa7464bdf334fa9832ed14fe5565b2e.r2.dev/hotellogos/hotel2.png",
+    alt: "Luxury hotel partner logo"
+  },
+  {
+    name: "Hotel Logo 3",
+    image: "https://pub-2fa7464bdf334fa9832ed14fe5565b2e.r2.dev/hotellogos/hotel3.png",
+    alt: "Hotel chain partner logo"
+  },
+  {
+    name: "Hotel Logo 4",
+    image: "https://pub-2fa7464bdf334fa9832ed14fe5565b2e.r2.dev/hotellogos/hotel4.png",
+    alt: "Hospitality partner logo"
+  }
+];
+---
+
+<section class="section-padding" id="clientele">
+  <div class="container">
+    <div class="text-center">
+      <h2>Trusted by Leading Hotels</h2>
+      <p>Our premium waste solutions are trusted by top hospitality brands worldwide.</p>
+    </div>
+    
+    <div class="clientele-grid">
+      {clientLogos.map((client) => (
+        <img
+          src={client.image}
+          alt={client.alt}
+          class="clientele-logo"
+          loading="lazy"
+        />
+      ))}
+    </div>
+  </div>
+</section> 

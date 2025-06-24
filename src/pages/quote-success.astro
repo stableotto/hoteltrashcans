@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const seoData = {
+  title: "Quote Request Received - Hotel Trash Cans",
+  description: "Thank you for your quote request. Our team will contact you within 24 hours with pricing and information.",
+  keywords: "quote request, hotel trash cans, thank you"
+};
+---
+
+<BaseLayout {...seoData}>
+  <Header />
+  
+  <main>
+    <section class="section-padding">
+      <div class="container">
+        <div class="success-container text-center">
+          <div class="success-icon">✓</div>
+          <h1>Thank You For Your Interest</h1>
+          <p class="success-message">
+            Our team will reach out in 1 business day.
+          </p>
+          
+          <div class="success-actions">
+            <a href="/" class="btn btn-primary">Return to Home</a>
+            <a href="/#collections" class="btn btn-secondary">Browse Collections</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+.success-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--space-2xl);
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #22c55e;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0 auto var(--space-lg);
+}
+
+.success-message {
+  font-size: 1.125rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-xl);
+  line-height: 1.6;
+}
+
+.success-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-bottom: var(--space-2xl);
+  flex-wrap: wrap;
+}
+
+.contact-info {
+  background-color: var(--color-secondary);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-xl);
+}
+
+.contact-info h3 {
+  margin-bottom: var(--space-sm);
+  color: var(--color-primary);
+}
+
+.contact-info p {
+  margin-bottom: var(--space-xs);
+}
+
+.contact-info a {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.contact-info a:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 767px) {
+  .success-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .success-actions .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+</style> 

@@ -1,0 +1,33 @@
+---
+// Footer component with navigation and copyright
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer section-padding-sm">
+  <div class="container">
+    <div class="footer-content">
+      <div>
+        <h3 class="footer-logo">Hotel Trash Cans</h3>
+        <p>Premium commercial waste solutions for hotels, restaurants, and commercial spaces.</p>
+        <p>&copy; {currentYear} Hotel Trash Cans. All rights reserved.</p>
+      </div>
+      
+      <nav>
+        <ul class="footer-nav">
+          <li><a href="/#collections">Collections</a></li>
+          <li><a href="/#benefits">About</a></li>
+          <li><a href="/request-quote">Request Quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer-logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}
+</style> 

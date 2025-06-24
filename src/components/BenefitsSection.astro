@@ -1,0 +1,95 @@
+---
+// Benefits section highlighting company advantages
+const benefits = [
+  {
+    icon: "🇺🇸",
+    title: "Proudly Made in the USA",
+    description: "All our products are manufactured with American craftsmanship and quality standards you can trust."
+  },
+  {
+    icon: "✨",
+    title: "Custom Design Solutions",
+    description: "Tailored trash can designs to perfectly match your brand aesthetic and functional requirements."
+  },
+  {
+    icon: "🏆",
+    title: "Over 35 Years of Excellence",
+    description: "Since 1988, we've been the trusted choice for premium commercial waste management solutions."
+  }
+];
+---
+
+<section class="section-padding benefits-section" id="benefits">
+  <div class="container">
+    <div class="text-center">
+      <h2>Why Choose Hotel Trash Cans</h2>
+      <p>Experience the difference that quality, customization, and decades of expertise make.</p>
+    </div>
+    
+    <div class="benefits-grid">
+      {benefits.map((benefit) => (
+        <div class="benefit-item">
+          <div class="benefit-icon">{benefit.icon}</div>
+          <h3 class="benefit-title">{benefit.title}</h3>
+          <p class="benefit-description">{benefit.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.benefits-section {
+  background-color: var(--color-secondary);
+}
+
+.benefits-grid {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: 1fr;
+  margin-top: var(--space-xl);
+}
+
+.benefit-item {
+  text-align: center;
+  padding: var(--space-lg);
+  background-color: var(--color-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.benefit-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.benefit-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.benefit-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+  color: var(--color-primary);
+}
+
+.benefit-description {
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .benefits-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  .benefit-title {
+    font-size: 1.375rem;
+  }
+}
+</style> 

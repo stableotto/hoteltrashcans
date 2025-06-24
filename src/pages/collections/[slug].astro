@@ -1,0 +1,199 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const collections = await getCollection('collections');
+  return collections.map((collection) => ({
+    params: { slug: collection.slug },
+    props: { collection },
+  }));
+};
+
+const { collection } = Astro.props;
+const { Content } = await collection.render();
+
+// Generate the call-to-action image path (collection-name-3.jpg)
+const collectionName = collection.slug.replace('-collection', '');
+const ctaImagePath = `https://pub-2fa7464bdf334fa9832ed14fe5565b2e.r2.dev/${collectionName}/${collectionName}-3.jpg`;
+
+const seoData = {
+  title: collection.data.seo?.title || collection.data.title,
+  description: collection.data.seo?.description || collection.data.description,
+  keywords: collection.data.seo?.keywords || `${collection.data.title}, hotel trash cans, commercial waste bins`,
+  image: collection.data.heroImage,
+  type: 'article' as const
+};
+---
+
+<BaseLayout {...seoData}>
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="collection-hero">
+      <img 
+        src={collection.data.heroImage} 
+        alt={`${collection.data.title} hero image`}
+        class="collection-hero-image"
+        loading="eager"
+      />
+    </section>
+    
+    <!-- Collection Info -->
+    <section class="section-padding">
+      <div class="container">
+        <div class="text-left collection-info">
+          <h1>{collection.data.title}</h1>
+          <p class="lead">{collection.data.description}</p>
+          
+          {collection.data.specifications && (
+            <div class="specifications">
+              <h3>Specifications</h3>
+              <p><strong>Dimensions:</strong> {collection.data.specifications.dimensions}</p>
+              <p><strong>Capacity:</strong> {collection.data.specifications.capacity}</p>
+              {collection.data.specifications.designer && (
+                <p><strong>Designer:</strong> {collection.data.specifications.designer}</p>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Main Product Image -->
+    <section class="section-padding-sm">
+      <div class="container">
+        <div class="text-center">
+          <img 
+            src={collection.data.mainProductImage} 
+            alt={`${collection.data.title} main product`}
+            style="max-width: 600px; width: 100%; height: auto; margin: 0 auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); object-fit: contain;"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+    
+    <!-- Color Variations -->
+    <section class="section-padding">
+      <div class="container">
+        <div class="text-center">
+          <h2>Available Colors & Finishes</h2>
+          <p style="font-weight: 300;">Choose from our range of premium finishes to match your space perfectly.</p>
+        </div>
+        
+        <div class="color-variations-grid">
+          {collection.data.colorVariations.map((variation) => (
+            <div>
+              <img
+                src={variation.image}
+                alt={variation.alt}
+                class="variation-image"
+                loading="lazy"
+              />
+              <p class="text-center" style="margin-top: var(--space-sm); font-weight: 500;">
+                {variation.name}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Call to Action Section -->
+    <section class="section-padding" style="background-color: var(--color-secondary);">
+      <div class="container">
+        <div style="display: grid; gap: var(--space-xl); grid-template-columns: 1fr; align-items: center;">
+          <div style="grid-template-columns: 1fr 1fr; gap: var(--space-xl); display: grid; align-items: center;">
+            <div>
+              <img 
+                src={ctaImagePath} 
+                alt={`${collection.data.title} for ordering`}
+                style="width: 100%; max-width: 400px; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);"
+                loading="lazy"
+              />
+            </div>
+            
+            <div>
+              <h3>Ready to Get Started?</h3>
+              <p>Get a custom quote for this premium collection today.</p>
+              
+              <div style="display: flex; gap: var(--space-md); flex-direction: column; margin-top: var(--space-lg);">
+                <a href="/request-quote" class="btn btn-primary">
+                  Request Quote
+                </a>
+                <a href={collection.data.downloadPdfLink} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                  Download PDF Catalog
+                </a>
+                {collection.data.metalOptionsLink && (
+                  <a href={collection.data.metalOptionsLink} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                    Metal Options
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Collection Content (Markdown) -->
+    <section class="section-padding">
+      <div class="container">
+        <div style="max-width: 800px; margin: 0 auto;">
+          <Content />
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  @media (min-width: 768px) {
+    .collection-info {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+  }
+  
+  .lead {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    font-weight: 300;
+  }
+  
+  .specifications {
+    margin-top: var(--space-lg);
+  }
+  
+  .specifications h3 {
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+  }
+  
+  .specifications p {
+    margin-bottom: var(--space-xs);
+  }
+  
+  @media (max-width: 767px) {
+    .collection-hero {
+      height: 40vh;
+      min-height: 300px;
+    }
+    
+    div[style*="grid-template-columns: 1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+    
+    div[style*="flex-direction: column"] {
+      flex-direction: column;
+    }
+  }
+</style> 

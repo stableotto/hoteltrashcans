@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ClienteleSection from '../components/ClienteleSection.astro';
+import CollectionsGrid from '../components/CollectionsGrid.astro';
+import BenefitsSection from '../components/BenefitsSection.astro';
+import Footer from '../components/Footer.astro';
+
+const seoData = {
+  title: "Hotel Trash Cans - Premium Commercial Waste Solutions",
+  description: "Discover our premium collection of hotel trash cans and commercial waste management solutions. Trusted by leading hotels, restaurants, and commercial spaces worldwide.",
+  keywords: "hotel trash cans, commercial waste bins, luxury hotel amenities, restaurant waste solutions, office waste management"
+};
+---
+
+<BaseLayout {...seoData}>
+  <Header />
+  
+  <main>
+    <Hero 
+      title="Premium Waste Solutions for Luxury Spaces"
+      subtitle="Elevate your commercial environment with our sophisticated collection of trash cans and waste management systems, designed for hotels, restaurants, and premium commercial spaces."
+    />
+    
+    <ClienteleSection />
+    
+    <CollectionsGrid />
+    
+    <BenefitsSection />
+  </main>
+  
+  <Footer />
+</BaseLayout> 

@@ -1,0 +1,84 @@
+---
+// Header component with logo, navigation, and mobile hamburger menu
+const { pathname } = Astro.url;
+const isHomePage = pathname === '/';
+---
+
+<header class={`header ${isHomePage ? 'header-transparent' : 'header-solid'}`}>
+  <div class="container">
+    <nav class="header-nav">
+      <a href="/" class="header-logo">
+        Hotel Trash Cans
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <ul class="header-menu">
+        <li><a href="/#collections">Collections</a></li>
+        <li><a href="/#benefits">About</a></li>
+        <li><a href="/request-quote">Request Quote</a></li>
+      </ul>
+      
+      <!-- Mobile Hamburger Button -->
+      <button 
+        class="hamburger" 
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+        id="mobile-menu-toggle"
+      >
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a href="/#collections">Collections</a></li>
+        <li><a href="/#benefits">About</a></li>
+        <li><a href="/request-quote">Request Quote</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        
+        // Toggle aria-expanded
+        menuToggle.setAttribute('aria-expanded', (!isExpanded).toString());
+        
+        // Toggle active classes
+        menuToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+      });
+      
+      // Close menu when clicking on links
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (event) => {
+        const target = event.target as Element;
+        if (!menuToggle.contains(target) && !mobileMenu.contains(target)) {
+          menuToggle.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+  });
+</script> 

@@ -1,0 +1,69 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  image?: string;
+  url?: string;
+  type?: 'website' | 'article';
+}
+
+const { 
+  title, 
+  description, 
+  keywords = "hotel trash cans, commercial waste bins, luxury hotel amenities, professional waste management", 
+  image = "https://your-r2-domain.com/hero/hero-bg.webp",
+  url = Astro.url.href,
+  type = "website"
+} = Astro.props;
+
+const siteTitle = "Hotel Trash Cans - Premium Commercial Waste Solutions";
+const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+---
+
+<!-- Primary Meta Tags -->
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="robots" content="index, follow" />
+<meta name="language" content="English" />
+<meta name="author" content="Hotel Trash Cans" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={url} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={url} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Hotel Trash Cans" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={url} />
+<meta property="twitter:title" content={fullTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={image} />
+
+<!-- Additional SEO -->
+<meta name="theme-color" content="#1a1a1a" />
+<meta name="msapplication-TileColor" content="#1a1a1a" />
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Hotel Trash Cans",
+  "url": "https://your-domain.pages.dev",
+  "logo": "https://your-r2-domain.com/logo.webp",
+  "description": "Premium commercial waste solutions for hotels, restaurants, and commercial spaces.",
+  "sameAs": []
+}
+</script> 
