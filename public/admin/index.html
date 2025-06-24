@@ -10,6 +10,27 @@
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
+    // Initialize Netlify CMS
+    window.CMS_MANUAL_INIT = true;
+    
+    // Wait for CMS to load
+    window.addEventListener('DOMContentLoaded', function() {
+      if (window.CMS) {
+        window.CMS.init({
+          config: {
+            backend: {
+              name: 'github',
+              repo: 'stableotto/hoteltrashcans',
+              branch: 'main',
+              base_url: 'https://api.netlify.com',
+              auth_endpoint: 'auth',
+              site_domain: 'transcendent-torrone-606c55.netlify.app'
+            }
+          }
+        });
+      }
+    });
+    
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {

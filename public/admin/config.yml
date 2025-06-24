@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: auth
+  site_domain: transcendent-torrone-606c55.netlify.app
   # For personal access token authentication:
   # Go to GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
   # Create a token with 'repo' scope
