@@ -1,9 +1,11 @@
 backend:
-  name: github
-  repo: stableotto/hoteltrashcans
-  branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
+  name: test-repo
+
+# For production, use:
+# backend:
+#   name: github
+#   repo: stableotto/hoteltrashcans
+#   branch: main
 
 # Uncomment below to enable drafts
 # publish_mode: editorial_workflow
