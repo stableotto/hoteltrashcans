@@ -2,8 +2,10 @@ backend:
   name: github
   repo: stableotto/hoteltrashcans
   branch: main
-  base_url: https://cms-oauth-provider.herokuapp.com
-  auth_endpoint: auth
+  # For personal access token authentication:
+  # Go to GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
+  # Create a token with 'repo' scope
+  # The CMS will prompt you to enter this token when you first login
 
 # For production, use:
 # backend:
