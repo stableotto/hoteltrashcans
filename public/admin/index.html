@@ -8,5 +8,24 @@
 <body>
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <script>
+    // Debug initialization
+    console.log('Decap CMS loading...');
+    console.log('Current URL:', window.location.href);
+    console.log('Current domain:', window.location.hostname);
+    
+    // Handle authentication errors
+    window.addEventListener('error', function(e) {
+      console.error('CMS Error:', e.error);
+    });
+    
+    // Log successful initialization
+    if (window.CMS) {
+      console.log('CMS object available:', window.CMS);
+    } else {
+      console.log('CMS object not yet available, waiting...');
+    }
+  </script>
 </body>
 </html> 

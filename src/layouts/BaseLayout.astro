@@ -34,9 +34,6 @@ const { title, description, keywords, image, type } = Astro.props;
     <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <slot />
@@ -45,17 +42,6 @@ const { title, description, keywords, image, type } = Astro.props;
     <script is:inline>
       // Add any global JavaScript here if needed
       // Example: Analytics, performance monitoring, etc.
-      
-      // Netlify Identity initialization
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
     </script>
   </body>
 </html>

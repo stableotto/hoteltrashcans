@@ -2,10 +2,6 @@ backend:
   name: github
   repo: stableotto/hoteltrashcans
   branch: main
-  # Netlify OAuth configuration
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
-  site_id: 0f5153ae-a137-425a-8391-f8c3e9eea3ea
 
 # Local backend for development (comment out for production)
 # local_backend: true
