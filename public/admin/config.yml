@@ -2,6 +2,7 @@ backend:
   name: github
   repo: stableotto/hoteltrashcans
   branch: main
+  auth_scope: repo
 
 # Local backend for development (comment out for production)
 # local_backend: true
