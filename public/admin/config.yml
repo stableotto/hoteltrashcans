@@ -2,7 +2,9 @@ backend:
   name: github
   repo: stableotto/hoteltrashcans
   branch: main
-  auth_scope: repo
+  base_url: https://hoteltrashcans.pages.dev
+  auth_endpoint: /api/auth
+  # The callback endpoint is handled by functions/api/callback.js
 
 # Local backend for development (comment out for production)
 # local_backend: true

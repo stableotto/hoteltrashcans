@@ -10,67 +10,25 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
-    // Debug initialization
+    // Debug logging
     console.log('Decap CMS loading...');
-    console.log('Current URL:', window.location.href);
-    console.log('Current domain:', window.location.hostname);
+    console.log('Site URL:', window.location.origin);
+    console.log('OAuth auth endpoint:', window.location.origin + '/api/auth');
+    console.log('OAuth callback endpoint:', window.location.origin + '/api/callback');
     
-    // Handle all errors
+    // Error handling
     window.addEventListener('error', function(e) {
       console.error('CMS Error:', e.error);
-      console.error('Error details:', e);
     });
     
-    // Handle unhandled promise rejections
     window.addEventListener('unhandledrejection', function(e) {
-      console.error('Unhandled promise rejection:', e.reason);
+      console.error('Promise rejection:', e.reason);
     });
     
-    // Manual CMS initialization for Personal Access Token
-    function initializeCMS() {
-      if (window.CMS) {
-        console.log('✅ CMS object available, initializing manually...');
-        
-        // Fetch and parse the config
-        fetch('/admin/config.yml')
-          .then(response => response.text())
-          .then(configText => {
-            console.log('✅ Config loaded');
-            
-            // Parse YAML config
-            const config = window.CMS.YAML.parse(configText);
-            console.log('✅ Config parsed:', config);
-            
-            // Override backend for Personal Access Token mode
-            config.backend = {
-              name: 'github',
-              repo: 'stableotto/hoteltrashcans',
-              branch: 'main',
-              // No base_url or auth_endpoint - this triggers Personal Access Token mode
-            };
-            
-            console.log('✅ Modified config for PAT mode:', config.backend);
-            
-            // Initialize CMS manually
-            window.CMS.init({ config });
-            console.log('✅ CMS initialized manually');
-          })
-          .catch(error => {
-            console.error('❌ Config load/parse error:', error);
-          });
-      } else {
-        console.log('⏳ CMS object not yet available, waiting...');
-        setTimeout(initializeCMS, 100);
-      }
+    // Log when CMS is ready
+    if (window.CMS) {
+      console.log('✅ CMS loaded successfully');
     }
-    
-    // Start initialization after a short delay
-    setTimeout(initializeCMS, 100);
-    
-    // Log when DOM is ready
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('✅ DOM ready');
-    });
   </script>
 </body>
 </html> 
