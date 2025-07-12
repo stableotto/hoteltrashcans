@@ -35,9 +35,9 @@ collections:
           - {label: "Dimensions", name: "dimensions", widget: "string"}
           - {label: "Capacity", name: "capacity", widget: "string"}
           - {label: "Designer", name: "designer", widget: "string", required: false}
-      - {label: "Cover Image URL", name: "coverImage", widget: "string", hint: "Full URL to cover image"}
-      - {label: "Hero Image URL", name: "heroImage", widget: "string", hint: "Full URL to hero image"}
-      - {label: "Main Product Image URL", name: "mainProductImage", widget: "string", hint: "Full URL to main product image"}
+      - {label: "Cover Image", name: "coverImage", widget: "image", hint: "Upload cover image"}
+      - {label: "Hero Image", name: "heroImage", widget: "image", hint: "Upload hero image"}
+      - {label: "Main Product Image", name: "mainProductImage", widget: "image", hint: "Upload main product image"}
       - label: "Color Variations"
         name: "colorVariations"
         widget: "list"
@@ -67,7 +67,7 @@ collections:
               - "Pearl White/Topaz"
               - "Topaz/Pewter"
             default: "Carbon"
-          - {label: "Image URL", name: "image", widget: "string", hint: "Full URL to the image (e.g., https://pub-2fa7464bdf334fa9832ed14fe5565b2e.r2.dev/...)"}
+          - {label: "Image", name: "image", widget: "image", hint: "Upload product image"}
           - {label: "Alt Text", name: "alt", widget: "string", hint: "Descriptive text for accessibility"}
       - {label: "Buy Now Link", name: "buyNowLink", widget: "string"}
       - {label: "Download PDF Link", name: "downloadPdfLink", widget: "string"}
