@@ -1,15 +1,30 @@
 function renderBody(status, content) {
     const html = `
     <script>
+      console.log('OAuth callback - Status:', '${status}');
+      console.log('OAuth callback - Content:', ${JSON.stringify(content)});
+      
       const receiveMessage = (message) => {
+        console.log('Received message from CMS:', message);
         window.opener.postMessage(
           'authorization:github:${status}:${JSON.stringify(content)}',
           message.origin
         );
         window.removeEventListener("message", receiveMessage, false);
       }
+      
       window.addEventListener("message", receiveMessage, false);
+      
+      console.log('Posting authorizing message to CMS...');
       window.opener.postMessage("authorizing:github", "*");
+      
+      // Auto-close the popup after a short delay if successful
+      if ('${status}' === 'success') {
+        setTimeout(() => {
+          console.log('Closing OAuth popup...');
+          window.close();
+        }, 1000);
+      }
     </script>
     `;
     const blob = new Blob([html]);

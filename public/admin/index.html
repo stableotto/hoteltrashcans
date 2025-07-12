@@ -16,6 +16,21 @@
     console.log('OAuth auth endpoint:', window.location.origin + '/api/auth');
     console.log('OAuth callback endpoint:', window.location.origin + '/api/callback');
     
+    // Listen for OAuth messages
+    window.addEventListener('message', function(e) {
+      console.log('🔐 OAuth message received:', e.data);
+      console.log('🔐 Message origin:', e.origin);
+      
+      if (e.data.startsWith('authorization:github:success')) {
+        console.log('✅ OAuth authentication successful!');
+        console.log('🔄 CMS should now initialize...');
+      } else if (e.data.startsWith('authorization:github:error')) {
+        console.log('❌ OAuth authentication failed:', e.data);
+      } else if (e.data === 'authorizing:github') {
+        console.log('🔄 OAuth authorization in progress...');
+      }
+    });
+    
     // Error handling
     window.addEventListener('error', function(e) {
       console.error('CMS Error:', e.error);
@@ -29,6 +44,23 @@
     if (window.CMS) {
       console.log('✅ CMS loaded successfully');
     }
+    
+    // Add a function to check CMS status
+    function checkCMSStatus() {
+      console.log('🔍 CMS Status Check:');
+      console.log('- CMS available:', !!window.CMS);
+      console.log('- Current URL:', window.location.href);
+      console.log('- Document ready:', document.readyState);
+    }
+    
+    // Check status periodically
+    setInterval(checkCMSStatus, 5000);
+    
+    // Check when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('✅ DOM ready');
+      checkCMSStatus();
+    });
   </script>
 </body>
 </html> 
